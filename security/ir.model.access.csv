@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_joinet_pagos_joinet_pagos,joinet_pagos.joinet_pagos,model_joinet_pagos_joinet_pagos,base.group_user,1,1,1,1
+access_joinet_pagos_joinet_pagos_bancos,joinet_pagos.joinet_pagos_bancos,model_joinet_pagos_joinet_pagos_bancos,base.group_user,1,1,1,1
+access_joinet_pagos_joinet_pagos_origen_pedidos,joinet_pagos.joinet_pagos_origen_pedidos,model_joinet_pagos_joinet_pagos_origen_pedidos,base.group_user,1,1,1,1
+access_joinet_pagos_joinet_pagos_secuencia,joinet_pagos.joinet_pagos_secuencia,model_joinet_pagos_joinet_pagos_secuencia,base.group_user,1,1,1,1

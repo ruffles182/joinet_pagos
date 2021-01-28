@@ -1,0 +1,159 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="joinet_pagos.list">
+      <field name="name">joinet_pagos list</field>
+      <field name="model">joinet_pagos.joinet_pagos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" width="100px"/>
+          <field name="fecha_del_pago" />
+          <field name="banco" />
+          <field name="monto" />
+          <field name="subido_por" />
+          <field name="fecha_validacion" />
+          <field name="fecha_impresion" />
+          <field name="archivo" widget="image" height="25" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="joinet_pagos.list_bancos">
+      <field name="name">joinet_pagos list_bancos</field>
+      <field name="model">joinet_pagos.joinet_pagos_bancos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="joinet_pagos.list_origen_pedidos">
+      <field name="name">joinet_pagos list_origen_pedidos</field>
+      <field name="model">joinet_pagos.joinet_pagos_origen_pedidos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="nomenclatura" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="joinet_pagos.list_secuencia">
+      <field name="name">joinet_pagos list_secuencia</field>
+      <field name="model">joinet_pagos.joinet_pagos_secuencia</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- explicit form declaration -->
+    <!-- Pc's-->
+    <record model="ir.ui.view" id="joinet_pagos.form">
+      <field name="name">joinet_pagos list</field>
+      <field name="model">joinet_pagos.joinet_pagos</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div>
+              <h2>
+                <field name="name"/>
+              </h2>
+              <h3>
+                <field name="origen" />
+              </h3>
+            </div>
+            <group>
+              <group col="2">
+                <field name="banco"/>
+                <field name="monto"/>
+              </group>
+              <group>
+                <field name="subido_por"/>
+              </group>
+              <group>
+                <field name="fecha_validacion"/>
+                <field name="fecha_impresion"/>
+              </group>
+              <group>
+                <field name="nombre_archivo" invisible="1" />
+                <field name="archivo" widget="image" height="150"/>
+                <!-- <field name="archivo" filename="nombre_archivo" class="oe_read_only" /> -->
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="joinet_pagos.action_window">
+      <field name="name">joinet_pagos window</field>
+      <field name="res_model">joinet_pagos.joinet_pagos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="joinet_pagos.action_window_bancos">
+      <field name="name">joinet_pagos_bancos window</field>
+      <field name="res_model">joinet_pagos.joinet_pagos_bancos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="joinet_pagos.action_window_origen_pedidos">
+      <field name="name">joinet_pagos_origen_pedidos window</field>
+      <field name="res_model">joinet_pagos.joinet_pagos_origen_pedidos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="joinet_pagos.action_window_secuencia">
+      <field name="name">joinet_pagos_secuencia window</field>
+      <field name="res_model">joinet_pagos.joinet_pagos_secuencia</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <!-- <record model="ir.actions.server" id="joinet_pagos.action_server">
+      <field name="name">joinet_pagos server</field>
+      <field name="model_id" ref="model_joinet_pagos_joinet_pagos"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record> -->
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="joinet_pagos" id="joinet_pagos.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Pagos" id="joinet_pagos.menu_1" parent="joinet_pagos.menu_root"/>
+    <menuitem name="Bancos" id="joinet_pagos.menu_2" parent="joinet_pagos.menu_root"/>
+    <menuitem name="Origen Pedido" id="joinet_pagos.menu_3" parent="joinet_pagos.menu_root"/>
+    <menuitem name="Secuencia" id="joinet_pagos.menu_4" parent="joinet_pagos.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Pagos" id="joinet_pagos.menu_pagos_list" parent="joinet_pagos.menu_1"
+              action="joinet_pagos.action_window"/>
+    <menuitem name="Bancos" id="joinet_pagos.menu_bancos_list" parent="joinet_pagos.menu_2"
+              action="joinet_pagos.action_window_bancos"/>
+    <menuitem name="Origen Pedido" id="joinet_pagos.menu_origen_pedidos_list" parent="joinet_pagos.menu_3"
+              action="joinet_pagos.action_window_origen_pedidos"/>
+    <menuitem name="Secuencia" id="joinet_pagos.menu_secuencia" parent="joinet_pagos.menu_4"
+              action="joinet_pagos.action_window_secuencia"/>
+
+  </data>
+</odoo>
