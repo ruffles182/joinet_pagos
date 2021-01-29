@@ -7,7 +7,7 @@ from odoo.modules.module import get_module_resource
 class joinet_pagos(models.Model):
     _name = 'joinet_pagos.joinet_pagos'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = 'joinet_pagos.joinet_pagos'
+    _description = 'Pedido'
 
     origen = fields.Many2one('joinet_pagos.joinet_pagos_origen_pedidos', "Origen")
     name = fields.Char("Pedido")
