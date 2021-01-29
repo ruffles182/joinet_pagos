@@ -2,9 +2,11 @@
 
 from odoo import models, fields, api
 from datetime import date
+from odoo.modules.module import get_module_resource
 
 class joinet_pagos(models.Model):
     _name = 'joinet_pagos.joinet_pagos'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'joinet_pagos.joinet_pagos'
 
     origen = fields.Many2one('joinet_pagos.joinet_pagos_origen_pedidos', "Origen")
@@ -20,11 +22,36 @@ class joinet_pagos(models.Model):
 
     @api.onchange('origen')
     def _onchange_partner(self):
-        self.name = self.origen.nomenclatura
+        f = open(get_module_resource('joinet_pagos', 'static/', 'conf.txt'), "r")
+        siguiente = int(f.readline()) + 1
+        if self.origen.nomenclatura:
+            self.name = self.origen.nomenclatura + str("-") + str("{:04d}".format(siguiente))
+        f.close()
+        
 
     @api.onchange('name')
     def _onchange_name(self):
         self.nombre_archivo = self.name + str(date.today())
+
+    @api.model
+    def create(self,values):
+        rtn = super(joinet_pagos, self).create(values)
+
+        f = open(get_module_resource('joinet_pagos', 'static/', 'conf.txt'), "r")
+        secuencia = int(f.readline()) + 1
+        f.close()
+
+        f = open(get_module_resource('joinet_pagos', 'static/', 'conf.txt'), "w")
+        f.write(str(secuencia))
+        f.close()
+
+        return rtn
+    
+    @api.model
+    def default_get(self, fields):
+        res = super(joinet_pagos, self).default_get(fields)
+        res['origen'] = 1
+        return res
 
 class joinet_pagos_bancos(models.Model):
     _name = 'joinet_pagos.joinet_pagos_bancos'
