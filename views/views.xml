@@ -13,7 +13,7 @@
           <field name="monto" />
           <field name="subido_por" />
           <field name="fecha_validacion" />
-          <field name="fecha_impresion" />
+          <field name="fecha_impresion" groups="joinet_pagos.grupo_joinet_impresion" />
           <field name="archivo" widget="image" height="25" />
         </tree>
       </field>
