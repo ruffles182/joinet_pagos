@@ -19,6 +19,16 @@ class joinet_pagos(models.Model):
     fecha_impresion = fields.Date("Fecha impresión")
     nombre_archivo = fields.Char("nombre archivo")
     archivo = fields.Binary("Imagen")
+    # grupo = fields.Boolean("Grupo", default=lambda self: self._autorizado())
+
+    @api.model
+    def _autorizado(self):
+        return False
+        # if (self.env['res.users'].has_group('joinet_pagos.grupo_joinet_compras')):
+        #     return True
+        # else:
+        #     return False
+
 
     @api.onchange('origen')
     def _onchange_partner(self):

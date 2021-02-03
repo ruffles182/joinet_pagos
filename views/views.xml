@@ -7,14 +7,14 @@
       <field name="model">joinet_pagos.joinet_pagos</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="name" width="100px"/>
-          <field name="fecha_del_pago" />
-          <field name="banco" />
-          <field name="monto" />
-          <field name="subido_por" />
-          <field name="fecha_validacion" />
-          <field name="fecha_impresion" groups="joinet_pagos.grupo_joinet_impresion" />
-          <field name="archivo" widget="image" height="25" />
+          <field name="name" width="100px" />
+          <field name="fecha_del_pago"  />
+          <field name="banco"  />
+          <field name="monto"  />
+          <field name="subido_por"  />
+          <field name="fecha_validacion"  />
+          <field name="fecha_impresion"  />
+          <field name="archivo" widget="image" height="25"  />
         </tree>
       </field>
     </record>
@@ -63,7 +63,7 @@
                 <field name="name" readonly="1" force_save="1" />
               </h2>
               <h3>
-                <field name="origen" />
+                <field name="origen"  />
               </h3>
             </div>
             <group>
@@ -76,7 +76,7 @@
               </group>
               <group>
                 <field name="fecha_validacion"/>
-                <field name="fecha_impresion"/>
+                <field name="fecha_impresion" />
               </group>
               <group>
                 <field name="nombre_archivo" invisible="1" />
@@ -86,7 +86,7 @@
             </group>
           </sheet>
             <div class="oe_chatter">
-              <field name="message_follower_ids" groups="base.group_user"/>
+              <field name="message_follower_ids"/>
               <field name="activity_ids"/>
               <field name="message_ids"/>
             </div>
@@ -120,22 +120,6 @@
       <field name="res_model">joinet_pagos.joinet_pagos_secuencia</field>
       <field name="view_mode">tree,form</field>
     </record>
-
-
-    <!-- server action to the one above -->
-
-    <!-- <record model="ir.actions.server" id="joinet_pagos.action_server">
-      <field name="name">joinet_pagos server</field>
-      <field name="model_id" ref="model_joinet_pagos_joinet_pagos"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record> -->
 
 
     <!-- Top menu item -->

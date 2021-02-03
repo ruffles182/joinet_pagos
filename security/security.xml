@@ -7,12 +7,12 @@
     <record  id="grupo_joinet_impresion" model="res.groups">
         <field name="name">Impresion</field>
         <field name="category_id" ref="module_category_joinet_pagos" />
+        <field name="implied_ids" eval="[(4, ref('grupo_joinet_impresion'))]"/>
     </record>
     
     <record  id="grupo_joinet_compras" model="res.groups">
         <field name="name">Compras</field>
         <field name="category_id" ref="module_category_joinet_pagos" />
-        <field name="implied_ids" eval="[(4, ref('grupo_joinet_impresion'))]"/>
     </record>
 </odoo>
 
